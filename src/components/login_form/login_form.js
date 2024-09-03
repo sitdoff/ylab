@@ -4,9 +4,21 @@ import InputBox from "../input_box/input_box.js";
 import { useEffect, useState } from "react";
 
 function LoginForm() {
+  function tokenGenerator(length) {
+    let result = "";
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+  }
+
   async function requestLogin() {
     const url = "https://example.com/api/login";
-    fetchMock.post(url, { token: "QpwL5tke4Pnpja7X4" });
+    fetchMock.post(url, { token: tokenGenerator(10) });
     const email = document.getElementsByName("email")[0].value;
     const password = document.getElementsByName("password")[0].value;
     let body = JSON.stringify({ email: email, password: password });
