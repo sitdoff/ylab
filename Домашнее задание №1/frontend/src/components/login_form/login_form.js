@@ -17,6 +17,7 @@ function LoginForm() {
     });
     let result = await response.json();
     console.log("result: ", result);
+    alert("Token: " + result.token);
     fetchMock.restore();
   }
 
@@ -73,6 +74,7 @@ function LoginForm() {
   return (
     <div className="login-form">
       <h1>Login form</h1>
+
       {emailDirty && emailError && <div className="error">{emailError}</div>}
       <InputBox
         type="text"
@@ -82,6 +84,7 @@ function LoginForm() {
         onChange={emailValidate}
         value={email}
       />
+
       {passwordDirty && passwordError && <div className="error">{passwordError}</div>}
       <InputBox
         type="password"
@@ -91,6 +94,7 @@ function LoginForm() {
         onChange={passwordValidate}
         value={password}
       />
+
       <div className="remember-forgot">
         <label>
           <input type="checkbox" name="remember" />
@@ -98,7 +102,9 @@ function LoginForm() {
         </label>
         <a href="#">Forgot password?</a>
       </div>
+
       <Button type="submit" sign="Login" onClick={requestLogin} disabled={!formValid} />
+
       <div className="register-link">
         <p>
           Don't have an account? <a href="#">Register</a>
