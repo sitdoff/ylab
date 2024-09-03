@@ -1,4 +1,3 @@
-import "./css/style.css";
 import Button from "../button/submit_button.js";
 import InputBox from "../input_box/input_box.js";
 

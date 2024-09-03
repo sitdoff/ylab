@@ -1,5 +1,3 @@
-import "./css/style.css";
-
 function InputBox(props) {
   return (
     <div className="input-box">
