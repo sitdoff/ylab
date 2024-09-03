@@ -1,6 +1,6 @@
 function Button(props) {
   return (
-    <button type={props.type} className="btn">
+    <button type={props.type} className="btn" onClick={props.onClick} disabled={props.disabled}>
       {props.sign}
     </button>
   );
