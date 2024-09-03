@@ -4,7 +4,10 @@ import InputBox from "../input_box/input_box.js";
 import { useEffect, useState } from "react";
 
 function LoginForm() {
+  /* Компонент формы аунтентификации */
+
   function tokenGenerator(length) {
+    // Генерирует рандомную строку указанной длины
     let result = "";
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     const charactersLength = characters.length;
@@ -17,8 +20,9 @@ function LoginForm() {
   }
 
   async function requestLogin() {
+    // Делает запрос на сервер с данными из формы
     const url = "https://example.com/api/login";
-    fetchMock.post(url, { token: tokenGenerator(10) });
+    fetchMock.post(url, { token: tokenGenerator(10) }); // fetch mock
     const email = document.getElementsByName("email")[0].value;
     const password = document.getElementsByName("password")[0].value;
     let body = JSON.stringify({ email: email, password: password });
@@ -30,7 +34,7 @@ function LoginForm() {
     let result = await response.json();
     console.log("result: ", result);
     alert("Token: " + result.token);
-    fetchMock.restore();
+    fetchMock.restore(); // fetch mock release
   }
 
   function blurHandler(e) {
@@ -45,6 +49,7 @@ function LoginForm() {
   }
 
   function emailValidate(email) {
+    // Валидация email
     setEmail(email.target.value);
     const re =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -56,6 +61,7 @@ function LoginForm() {
   }
 
   function passwordValidate(password) {
+    // Валидация password
     setPassword(password.target.value);
     if (password.target.value.length < 4) {
       setPasswordError("Password должен быть больше 4 символов");
@@ -68,6 +74,7 @@ function LoginForm() {
   }
 
   function errorEffect() {
+    // Установка состояния формы
     if (emailError || passwordError) {
       setFormValid(false);
     } else setFormValid(true);
